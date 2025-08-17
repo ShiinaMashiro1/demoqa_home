@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class BaseComponent:
     def __init__(self, driver, locator, timeout=10):
         self.driver = driver
@@ -18,5 +19,4 @@ class BaseComponent:
         ).click()
 
     def get_text(self):
-        element = self.find_element()  # находим элемент
-        return str(element.text)       # возвращаем текст
+        return self.find_element().text.strip()
