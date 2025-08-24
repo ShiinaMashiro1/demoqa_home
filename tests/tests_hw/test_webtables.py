@@ -3,7 +3,7 @@ import string
 import pytest
 
 from pages.webtables_page import WebTablesPage, Person
-from conftest import browser
+from tests.conftest import browser
 
 
 def _rand(n=6) -> str:

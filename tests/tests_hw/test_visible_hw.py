@@ -3,7 +3,7 @@ import time
 import pytest
 
 from pages.accordion import Accordion
-from conftest import browser
+from tests.conftest import browser
 
 
 @pytest.mark.usefixtures("browser")
