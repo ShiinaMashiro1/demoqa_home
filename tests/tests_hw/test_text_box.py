@@ -21,8 +21,8 @@ def test_text_box_submit_shows_text(browser):
     wait = WebDriverWait(browser, 10)
     _hide_overlays(browser)
 
-    full_name_value = "Иван Петров"
-    current_address_value = "г. Казань, ул. Пушкина, д. 10"
+    full_name_value = "User Name"
+    current_address_value = "User Address"
 
     name_input = wait.until(EC.visibility_of_element_located((By.ID, "userName")))
     current_addr_input = browser.find_element(By.ID, "currentAddress")
