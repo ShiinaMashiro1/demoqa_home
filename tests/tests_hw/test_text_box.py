@@ -7,7 +7,6 @@ from conftest   import browser
 
 
 def _hide_overlays(browser):
-    # Прячем баннеры/куки, которые иногда перекрывают кнопку Submit
     browser.execute_script("""
         const ids = ['fixedban','adplus-anchor'];
         ids.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
@@ -28,26 +27,21 @@ def test_text_box_submit_shows_text(browser):
     wait = WebDriverWait(browser, 10)
     _hide_overlays(browser)
 
-    # значения через переменные
-    full_name_value = "Иван Петров"
-    current_address_value = "г. Казань, ул. Пушкина, д. 10"
+    full_name_value = "User Name"
+    current_address_value = "User Address"
 
-    # элементы формы
     name_input = wait.until(EC.visibility_of_element_located((By.ID, "userName")))
     current_addr_input = browser.find_element(By.ID, "currentAddress")
     submit_btn = browser.find_element(By.ID, "submit")
 
-    # ввод
     name_input.clear()
     name_input.send_keys(full_name_value)
     current_addr_input.clear()
     current_addr_input.send_keys(current_address_value)
 
-    # клик сабмита (на всякий случай — скроллим к элементу)
     browser.execute_script("arguments[0].scrollIntoView({block:'center'});", submit_btn)
     submit_btn.click()
 
-    # проверки
     output = wait.until(EC.visibility_of_element_located((By.ID, "output")))
     name_out = output.find_element(By.CSS_SELECTOR, "#name")
     curr_addr_out = output.find_element(By.CSS_SELECTOR, "#currentAddress")
